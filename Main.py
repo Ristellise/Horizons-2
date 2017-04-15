@@ -1,5 +1,7 @@
-import SoundWrapper
 from Utils import *
+import logging
+import pyglet
+logging.basicConfig(level=logging.INFO)
 version = ["0.0.1 ", "Pre - Alpha"]
 versionstring = ''.join(version)
 """
@@ -13,6 +15,5 @@ Where:
 """
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1")
-SoundWrapper.init()
-
+pyglet.app.run()
 print("StepLoad : 2")
