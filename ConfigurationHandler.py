@@ -1,16 +1,28 @@
 import logging
-import configparser
-config = configparser.ConfigParser()
-def addconfig(*args):
+import json
 
-def updateconfig(*args):
-
-def configpop():
-    addconfig()
-def openconfig():
-    loaded = 0
-    if loaded == 0:
-        config.read("config.ini")
-        loaded += 1
+__loadedconfig__ = 0
+__localdata = None
+__file__ = None
+def loadconfig(file):
+    if __loadedconfig__ == 1:
+        logging.INFO("Loaded config already!")
+        return False
     else:
-        logging.info("config already loaded! not loading...")
+        __file__ = file
+        __loadedconfig__ += 1
+        return True
+def save_config():
+    with open(str(__file__)) as file:
+        try:
+            formdump = json.dump(__localdata,sort_keys=False,indent=4)
+            file.write(formdump)
+            file.close()
+        except Exception:
+            logging.CRITICAL("Cannot Write To : " +  str(__file__) + " !")
+def load_config():
+    with open(str(__file__)) as file:
+        try:
+            __localdata = file.read()
+        except Exception:
+            logging.CRITICAL("Cannot Read From : " + str(__file__) + " !")
