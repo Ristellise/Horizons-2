@@ -1,28 +1,18 @@
 import logging
-import json
-
-__loadedconfig__ = 0
-__localdata = None
-__file__ = None
-def loadconfig(file):
-    if __loadedconfig__ == 1:
-        logging.INFO("Loaded config already!")
-        return False
-    else:
-        __file__ = file
-        __loadedconfig__ += 1
+import configparser
+config = configparser.ConfigParser()
+def trypopconfig():
+    """
+    Tries to populate the config.
+    :return: True or False if successful or not respectively.
+    """
+    # TODO: Continue to populate this with configurable stuff
+    if config['GameMechanics']['initialrun'] == 0:
+        config['GameMechanics'] = {
+            "tickspeed": '60',
+            "initialrun": '1'
+        }
+        logging.info("Generated Config!")
         return True
-def save_config():
-    with open(str(__file__)) as file:
-        try:
-            formdump = json.dump(__localdata,sort_keys=False,indent=4)
-            file.write(formdump)
-            file.close()
-        except Exception:
-            logging.CRITICAL("Cannot Write To : " +  str(__file__) + " !")
-def load_config():
-    with open(str(__file__)) as file:
-        try:
-            __localdata = file.read()
-        except Exception:
-            logging.CRITICAL("Cannot Read From : " + str(__file__) + " !")
+    else:
+        return False

@@ -13,4 +13,3 @@ def on_draw():
     window.clear()
     stardraw.draw()
 
-def update(dt):

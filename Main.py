@@ -16,8 +16,7 @@ Where:
 """
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1")
-CH.
+CH.trypopconfig()
 window = pyglet.window.Window()
 pyglet.app.run()
 print("StepLoad : 2")
-@window.event
