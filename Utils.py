@@ -1,6 +1,8 @@
 import time
 import logging
 import traceback
+import random
+import noise
 def printf(*args, speed):
     try:
         intspeed = int(speed)
