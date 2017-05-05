@@ -1,5 +1,6 @@
 import time
 import logging
+import traceback
 def printf(*args, speed):
     try:
         intspeed = int(speed)
@@ -31,3 +32,11 @@ def Noise(seed, method):
         if seed is 0:
             seed = random.seed()
         print(noise.snoise2(seed, seed))
+
+def panic():
+    print("Horizons 2 Has encoundered a Serious Error and must shutdown!")
+    print("-------------------------------------------------------------------------")
+    traceback.print_stack()
+    print("-------------------------------------------------------------------------")
+    import sys
+    sys.exit("Horizons 2 Paniced.")
