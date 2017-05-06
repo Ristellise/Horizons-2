@@ -3,6 +3,8 @@ import Main
 window = Main.window
 starbatch = pyglet.graphics.Batch()
 stardraw = []
+windbatch = pyglet.graphics.Batch()
+winddraw = []
 """
 Do not hack into This function below! this is used for low level drawing!
 """
@@ -12,4 +14,3 @@ def add2Batch():
 def on_draw():
     window.clear()
     stardraw.draw()
-
