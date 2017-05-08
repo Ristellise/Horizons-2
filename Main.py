@@ -1,5 +1,5 @@
 import logging
-import pyglet
+import pygame
 import ConfigurationHandler as CH
 logging.basicConfig(level=logging.INFO)
 version = ["0.0.1 ", "Pre - Alpha"]
@@ -15,7 +15,5 @@ Where:
 """
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1")
-CH.trypopconfig()
-window = pyglet.window.Window()
-pyglet.app.run()
+
 print("StepLoad : 2")
