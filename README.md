@@ -1,5 +1,6 @@
 # Horizons 2
 | CI | Status |
+| --- | --- |
 | Travis | ![Travis Build](https://travis-ci.org/Joshwoo70/Horizons-2.svg?branch=master) |
 |Appveyor | Coming Soon! |
 
