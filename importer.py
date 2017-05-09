@@ -1,5 +1,4 @@
 import Utils
-import Zen
 import pyganim
 import pygame
 import ConfigurationHandler

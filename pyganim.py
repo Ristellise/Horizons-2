@@ -13,8 +13,7 @@
 #
 
 
-# TODO: Feature idea: if the same image file is specified, re-use the Surface object. (Make this optional though.)
-
+# TONotDO: Feature idea: if the same image file is specified, re-use the Surface object. (Make this optional though.)
 import time
 
 import pygame
@@ -352,7 +351,7 @@ class PygAnimation(object):
             not the transformed images in self._transformedImages
             """
             newSurf = pygame.Surface(
-                (maxWidth, maxHeight))  # TODO: this is probably going to have errors since I'm using the default depth.
+                (maxWidth, maxHeight))  # TONotDO: this is probably going to have errors since I'm using the default depth.
 
             # set the expanded areas to be transparent
             newSurf = newSurf.convert_alpha()
@@ -567,7 +566,7 @@ class PygAnimation(object):
     def _propSetElapsed(self, elapsed):
         # NOTE: Do to floating point rounding errors, this doesn't work precisely.
         elapsed += 0.00001  # done to compensate for rounding errors
-        # TODO - I really need to find a better way to handle the floating point thing.
+        # TONotDO - I really need to find a better way to handle the floating point thing.
 
         # Set the elapsed time to a specific value.
         if self._loop:

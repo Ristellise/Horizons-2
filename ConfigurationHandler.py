@@ -7,19 +7,18 @@ def trypopconfig():
     Tries to populate the config.
     :return: True or False if successful or not respectively.
     """
-    # TODO: Continue to populate this with configurable stuff
+    # TODO:
     try:
-        if config['GameMechanics']['initialrun'] == 0:
-            pass
-        else:
-            config['GameMechanics'] = {
-                "tickspeed": '60',
-                "initialrun": '1'
-            }
+        #  Test for a Valid initial run key.
+        config['GameMechanics']['initialrun']
     except KeyError:
         config['GameMechanics'] = {
             "tickspeed": '60',
-            "initialrun": '1'
+            "initialrun": '1',
+        }
+        config['Experimental'] = {
+            "use VSync": '0'
+
         }
         logging.info("Generated Config!")
         config.write(configfile)
