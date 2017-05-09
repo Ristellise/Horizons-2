@@ -1,4 +1,5 @@
-# Horizons 2 ![Travis Build][https://travis-ci.org/Joshwoo70/Horizons-2.svg?branch=master]
+# Horizons 2 
+![Travis Build][https://travis-ci.org/Joshwoo70/Horizons-2.svg?branch=master]
 ## What is this game?
 Horizons 2 is a :
 - Massive
