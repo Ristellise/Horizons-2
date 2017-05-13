@@ -1,8 +1,6 @@
 import logging
 import pygame
-import ConfigurationHandler as CH
-import importer
-import localeEngine
+from src import *
 logging.basicConfig(level=logging.INFO)
 version = ["0.0.1 ", "Pre - Alpha"]
 versionstring = ''.join(version)
@@ -15,11 +13,8 @@ Where:
 4 (Mod Interaction)
 5 (Cleanup and run game)
 """
-localeEngine.init_localization()
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1(Pygame Setup)")
 pygame.init()
-
 print("StepLoad : 2")
-import Mods.Core.Core as Core
-Core.init()
+Utils.panic()
