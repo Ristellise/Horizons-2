@@ -17,8 +17,8 @@ def trypopconfig():
             "initialrun": '1',
         }
         config['Experimental'] = {
-            "use VSync": '0'
-
+            "VSync": '0',
+            "ProcessLock": '5'
         }
         logging.info("Generated Config!")
         config.write(configfile)
@@ -30,3 +30,14 @@ def loadconfig():
         logging.INFO("Failed Reading file!")
     else:
         config.read(configfile)
+def getconfig(section, option):
+    """
+    gets value for specified config.
+    :param section: section of config
+    :param option: options.
+    :return: Value given. Else, Return False.
+    """
+    try:
+        return config.get(section=section, option=option)
+    except configparser.NoOptionError:
+        return False
