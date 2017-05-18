@@ -7,11 +7,13 @@ from . import pguglobals
 from . import style
 from .errors import PguError
 
+
 class SignalCallback:
     # The function to call
     func = None
     # The parameters to pass to the function (as a list)
     params = None
+
 
 class Widget(object):
     """Base class for all PGU graphical objects.
@@ -53,8 +55,8 @@ class Widget(object):
     connects = None
     # The area covered by the widget, relative to the parent widget
     rect = None
-    
-    def __init__(self, **params): 
+
+    def __init__(self, **params):
         """Create a new Widget instance given the style parameters.
 
         Keyword arguments:
@@ -77,31 +79,31 @@ class Widget(object):
             value -- initial value
 
         """
-        #object.Object.__init__(self) 
+        # object.Object.__init__(self)
         self.connects = {}
-        params.setdefault('decorate',True)
-        params.setdefault('style',{})
-        params.setdefault('focusable',True)
-        params.setdefault('disabled',False)
-        
+        params.setdefault('decorate', True)
+        params.setdefault('style', {})
+        params.setdefault('focusable', True)
+        params.setdefault('disabled', False)
+
         self.focusable = params['focusable']
         self.disabled = params['disabled']
-        
-        self.rect = pygame.Rect(params.get('x',0),
-                                params.get('y',0),
-                                params.get('width',0),
-                                params.get('height',0))
-        
+
+        self.rect = pygame.Rect(params.get('x', 0),
+                                params.get('y', 0),
+                                params.get('width', 0),
+                                params.get('height', 0))
+
         s = params['style']
-        #some of this is a bit "theme-ish" but it is very handy, so these
-        #things don't have to be put directly into the style.
-        for att in ('align','valign','x','y','width','height','color','font','background'):
+        # some of this is a bit "theme-ish" but it is very handy, so these
+        # things don't have to be put directly into the style.
+        for att in ('align', 'valign', 'x', 'y', 'width', 'height', 'color', 'font', 'background'):
             if att in params: s[att] = params[att]
-        self.style = style.Style(self,s)
-        
+        self.style = style.Style(self, s)
+
         self.cls = 'default'
         if 'cls' in params: self.cls = params['cls']
-        if 'name' in params:    
+        if 'name' in params:
             from . import form
             self.name = params['name']
             if form.Form.form:
@@ -109,32 +111,32 @@ class Widget(object):
                 self.form = form.Form.form
         if 'value' in params: self.value = params['value']
         self.pcls = ""
-        
+
         if params['decorate'] != False:
             if (not pguglobals.app):
                 # TODO - fix this somehow
                 from . import app
                 app.App()
-            pguglobals.app.theme.decorate(self,params['decorate'])
+            pguglobals.app.theme.decorate(self, params['decorate'])
 
     def focus(self):
         """Focus this Widget."""
-        if self.container: 
+        if self.container:
             if self.container.myfocus != self:  ## by Gal Koren
                 self.container.focus(self)
 
-    def blur(self): 
+    def blur(self):
         """Blur this Widget."""
         if self.container: self.container.blur(self)
 
     def open(self):
         """Open this widget as a modal dialog."""
-        #if getattr(self,'container',None) != None: self.container.open(self)
+        # if getattr(self,'container',None) != None: self.container.open(self)
         pguglobals.app.open(self)
 
     def close(self, w=None):
         """Close this widget, if it is currently an open dialog."""
-        #if getattr(self,'container',None) != None: self.container.close(self)
+        # if getattr(self,'container',None) != None: self.container.close(self)
         if (not w):
             w = self
         pguglobals.app.close(w)
@@ -148,7 +150,7 @@ class Widget(object):
             return (self.container.myhover is self)
         return False
 
-    def resize(self,width=None,height=None):
+    def resize(self, width=None, height=None):
         """Resize this widget and all sub-widgets, returning the new size.
 
         This should be implemented by a subclass.
@@ -158,25 +160,25 @@ class Widget(object):
 
     def chsize(self):
         """Signal that this widget has changed its size."""
-        
-        if (not self._painted): 
+
+        if (not self._painted):
             return
-        
-        if (not self.container): 
+
+        if (not self.container):
             return
-        
+
         if (pguglobals.app):
             pguglobals.app.chsize()
 
-    def update(self,s):
+    def update(self, s):
         """Updates the surface and returns a rect list of updated areas
 
         This should be implemented by a subclass.
 
         """
         return
-        
-    def paint(self,s):
+
+    def paint(self, s):
         """Render this widget onto the given surface
 
         This should be implemented by a subclass.
@@ -184,20 +186,20 @@ class Widget(object):
         """
         return
 
-    def repaint(self): 
+    def repaint(self):
         """Request a repaint of this Widget."""
         if self.container: self.container.repaint(self)
-        #pguglobals.app.repaint_widget(self)
+        # pguglobals.app.repaint_widget(self)
 
     def repaintall(self):
         """Request a repaint of all Widgets."""
         if self.container: self.container.repaintall()
 
-    def reupdate(self): 
+    def reupdate(self):
         """Request a reupdate of this Widget."""
         if self.container: self.container.reupdate(self)
 
-    def next(self): 
+    def next(self):
         """Pass focus to next Widget.
         
         Widget order determined by the order they were added to their container.
@@ -205,15 +207,15 @@ class Widget(object):
         """
         if self.container: self.container.next(self)
 
-    def previous(self): 
+    def previous(self):
         """Pass focus to previous Widget.
         
         Widget order determined by the order they were added to their container.
 
         """
-        
+
         if self.container: self.container.previous(self)
-    
+
     def get_abs_rect(self):
         """Returns the absolute rect of this widget on the App screen."""
         x, y = self.rect.x, self.rect.y
@@ -230,7 +232,7 @@ class Widget(object):
             cnt = cnt.container
         return pygame.Rect(x, y, self.rect.w, self.rect.h)
 
-    def connect(self,code,func,*params):
+    def connect(self, code, func, *params):
         """Connect an event code to a callback function.
         
         Note that there may be multiple callbacks per event code.
@@ -287,7 +289,7 @@ class Widget(object):
                 else:
                     n += 1
 
-    def send(self,code,event=None):
+    def send(self, code, event=None):
         """Send a code, event callback trigger."""
         if (not code in self.connects):
             return
@@ -307,12 +309,12 @@ class Widget(object):
 
             # If the function is bound to an instance, remove the first argument name. Again
             # we keep compatibility with older versions of python.
-            if (hasattr(func, "__self__") and hasattr(func.__self__, "__class__") or 
-                hasattr(func,'im_class')): 
+            if (hasattr(func, "__self__") and hasattr(func.__self__, "__class__") or
+                    hasattr(func, 'im_class')):
                 names.pop(0)
-            
+
             args = []
-            magic = {'_event':event,'_code':code,'_widget':self}
+            magic = {'_event': event, '_code': code, '_widget': self}
             for name in names:
                 if name in magic.keys():
                     args.append(magic[name])
@@ -322,13 +324,13 @@ class Widget(object):
                     break
             args.extend(values)
             func(*args)
-    
-    def _event(self,e):
+
+    def _event(self, e):
         if self.disabled: return
-        self.send(e.type,e)
+        self.send(e.type, e)
         return self.event(e)
-        
-    def event(self,e):
+
+    def event(self, e):
         """Called when an event is passed to this object.
         
         Please note that if you use an event, returning the value True
@@ -353,4 +355,3 @@ class Widget(object):
         """Test if the given point hits this widget. Over-ride this function
         for more advanced collision testing."""
         return self.rect.collidepoint(pos)
-

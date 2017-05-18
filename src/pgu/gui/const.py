@@ -25,6 +25,7 @@ Other:
 import pygame
 
 from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION, KEYDOWN, USEREVENT
+
 ENTER = pygame.locals.USEREVENT + 0
 EXIT = pygame.locals.USEREVENT + 1
 BLUR = pygame.locals.USEREVENT + 2
@@ -36,7 +37,6 @@ CLOSE = pygame.locals.USEREVENT + 7
 INIT = 'init'
 ACTIVATE = "activate"
 
-class NOATTR: 
+
+class NOATTR:
     pass
-
-
