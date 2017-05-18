@@ -1,7 +1,10 @@
 import logging
 import configparser
+
 config = configparser.ConfigParser()
 configfile = "config.ini"
+
+
 def trypopconfig():
     """
     Tries to populate the config.
@@ -25,11 +28,15 @@ def trypopconfig():
         return True
     else:
         return False
+
+
 def loadconfig():
     if not config.read(configfile):
         logging.INFO("Failed Reading file!")
     else:
         config.read(configfile)
+
+
 def getconfig(section, option):
     """
     gets value for specified config.
