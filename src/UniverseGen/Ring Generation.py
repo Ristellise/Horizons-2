@@ -5,7 +5,7 @@ import sys
 
 # Generation parameters:
 
-# raw_input the user's desired values
+# input the user's desired values
 # Background color of the created PNG
 PNGBGCOLOR = (0, 0, 0)
 
@@ -13,10 +13,10 @@ PNGBGCOLOR = (0, 0, 0)
 RAND = random.randrange(0, 108000000000)
 
 # ---------------------------------------------------------------------------
-NAME = raw_input('Galaxy Name:')
+NAME = input('Galaxy Name:')
 
 HSB = int(
-    raw_input('Hub Size Bracket <0 = 1-100, 1 = 100-1000, 2 = 1000-100000, 3 = 100000-1000000, 4 = 1000000-2000000>:'))
+    input('Hub Size Bracket <0 = 1-100, 1 = 100-1000, 2 = 1000-100000, 3 = 100000-1000000, 4 = 1000000-2000000>:'))
 
 NUMC = (random.randint(0, 12))
 
@@ -31,8 +31,7 @@ elif HSB == 3:
 elif HSB == 4:
     NUMHUB = random.randrange(1000000, 2000000)
 
-print
-NUMHUB
+print(NUMHUB)
 
 NUMINT = int((random.uniform(0.01, 0.8)) * NUMHUB)
 
@@ -73,9 +72,9 @@ PNGSIZEA = HUBRAD / 5
 
 PNGFRAMEA = PNGSIZEA / 10
 
-PNGSIZE = float(raw_input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
+PNGSIZE = float(input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
 
-PNGFRAME = float(raw_input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
+PNGFRAME = float(input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
 
 stars = []
 clusters = []

@@ -281,8 +281,7 @@ def drawToPNG(filename):
 
     # Save the PNG
     image.save(filename)
-    print
-    filename
+    print(filename)
 
 
 # Generate the galaxy

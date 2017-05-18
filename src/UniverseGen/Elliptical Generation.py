@@ -1,5 +1,32 @@
+#
+# This script generates a 3D galaxy from a number of parameters and stores
+# it in an array. You can modify this script to store the data in a database
+# or whatever your purpose is. THIS script uses the data only to generate a
+# PNG with a 2D view from top of the galaxy.
+#
+# The algorithm used to generate the galaxy is borrowed from Ben Motz
+# <motzb@hotmail.com>. The original C source code for DOS (including a 3D
+# viewer) can be downloaded here:
+#
+# http://bits.bristol.ac.uk/motz/tep/galaxy.html
+#
+# Unfortunately, the original python code has been lost to time and a lack of wanting-to-
+# search-through-several-hundred-webpages-for-one-webarchive-page. Sorry, original python guy.
+#
+# A fair portion of the revisions and code is from /u/_Foxtrot_ on reddit. They are much better with the python-fu
+# than I!
+#
+
+from PIL import Image
+from PIL import ImageDraw
 import random
 import math
+import time
+# Generation parameters:
+
+# input the user's desired values
+# Background color of the created PNG
+PNGBGCOLOR = (0, 0, 0)
 
 # Quick Filename
 RAND = random.randrange(0, 108000000000)
@@ -7,45 +34,37 @@ RAND = random.randrange(0, 108000000000)
 # ---------------------------------------------------------------------------
 NAME = input('Galaxy Name:')
 
-HSB = int(input())
+NUMC = int(input('Number of Globular Clusters other than Central <Default:0>:') or "1")
 
-NUMC = (random.randint(0, 12))
+NUMSTR = int(input('Number of Stars <Default:2000>:') or "2000")
 
-if HSB == 0:
-    NUMSTR = random.randrange(1, 100)
-elif HSB == 1:
-    NUMSTR = random.randrange(100, 1000)
-elif HSB == 2:
-    NUMSTR = random.randrange(1000, 100000)
-elif HSB == 3:
-    NUMSTR = random.randrange(100000, 1000000)
-elif HSB == 4:
-    NUMSTR = random.randrange(1000000, 2000000)
+NUMCLUSA = NUMSTR // 70
 
-print(NUMSTR)
+NUMCLUS = int(input('Number of Stars in each Cluster <Default:Hub / 70>:') or str(NUMCLUSA))
 
-NUMCLUS = NUMSTR / 70
+DISCLUSA = NUMCLUS // 4
 
-DISCLUS = NUMCLUS / 4
+DISCLUS = int(input('Distribution of Star Number in each Cluster <Default: Avg/ 4>:') or str(DISCLUSA))
 
-GALX = int(NUMSTR / (random.randrange(8, 20)))
+GALX = float(input('X Length of Galaxy <Default:90.0>:') or "90.0")
 
-GALY = int(NUMSTR / (random.randrange(6, 28)))
+GALY = float(input('Y Length of Galaxy <Default:90.0>:') or "90.0")
 
-GALZ = int(NUMSTR / (random.randrange(10, 40)))
+GALZ = float(input('Maximum Depth of Galaxy <Default:0.0>:') or "0.0")
 
-CLUSRAD = NUMCLUS / 5
+CLUSRADA = GALX // 12
 
-DISCLRAD = CLUSRAD / 5
+CLUSRAD = float(input('Radius of each cluster <Default:Hub / 12>:') or str(CLUSRADA))
 
-PNGSIZEA = GALX / 5
+DISCLRADA = CLUSRAD // 5
 
-PNGFRAMEA = PNGSIZEA / 10
+DISCLRAD = float(input('Distribution of Cluster Radius <Default:Avg / 5>:') or str(DISCLRADA))
 
-PNGSIZE = float(input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
+PNGSIZE = float(input('X and Y Size of PNG <Default:1200>:') or "1200")
 
-PNGFRAME = float(input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
-
+PNGFRAME = float(input('PNG Frame Size <Default:50>:') or "50")
+print("Start Process Time!")
+Start = time.process_time()
 stars = []
 clusters = []
 
@@ -163,16 +182,38 @@ def generateStars():
         c = c + 1
 
 
+def drawtopng(filename):
+    image = Image.new("RGB", (int(PNGSIZE), int(PNGSIZE)), PNGBGCOLOR)
+    draw = ImageDraw.Draw(image)
 
+    # Find maximal star distance
+    max = 0
+    for (x, y, z, scol) in stars:
+        if abs(x) > max:
+            max = x
+        if abs(y) > max:
+            max = y
+        if abs(z) > max:
+            max = z
+
+    # Calculate zoom factor to fit the galaxy to the PNG size
+    factor = float(PNGSIZE - PNGFRAME * 2) / (max * 2)
+    for (x, y, z, scol) in stars:
+        sx = factor * x + PNGSIZE / 2
+        sy = factor * y + PNGSIZE / 2
+        draw.point((sx, sy), fill=scol)
+
+    # Save the PNG
+    image.save(filename)
+    print(filename)
 
 
 # Generate the galaxy
-generateClusters()
-generateStars()
-
+#  generateClusters()
+#  generateStars()
+Stop = time.process_time()
 # Save the galaxy as PNG to galaxy.png
-drawToPNG("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
-
+#  drawtopng("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
 # Create the galaxy's data galaxy.txt
 with open("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
     text_file.write("Galaxy Number: {}".format(RAND))
@@ -188,4 +229,10 @@ with open("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as tex
     text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
     text_file.write("Image Size: {}".format(PNGSIZE))
     text_file.write("Frame Size: {}".format(PNGFRAME))
-
+Stop2 = time.process_time()
+ProcTimeTotal = Stop2 - Start
+ProcTimeGen = Stop - Start
+ProcTimeSave = Stop2 - Stop
+print("Time taken for Entire Process: " + str(ProcTimeTotal))
+print("Time taken for Galaxy Gen Process: " + str(ProcTimeGen))
+print("Time taken for Saving Process: " + str(ProcTimeGen))

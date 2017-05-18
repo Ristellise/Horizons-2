@@ -1,13 +1,13 @@
 import random
 import math
-
+from PIL import ImageDraw, Image
 # Quick Filename
 RAND = random.randrange(0, 108000000000)
 
 # ---------------------------------------------------------------------------
-NAME = raw_input('Galaxy Name:')
+NAME = input('Galaxy Name:')
 
-HSB = int(raw_input(
+HSB = int(input(
     'Galaxy Size Bracket <0 = 1-100, 1 = 100-1000, 2 = 1000-100000, 3 = 100000-1000000, 4 = 1000000-2000000>:'))
 
 NUMC = (random.randint(0, 12))
@@ -23,8 +23,7 @@ elif HSB == 3:
 elif HSB == 4:
     NUMSTR = random.randrange(1000000, 2000000)
 
-print
-NUMSTR
+print(NUMSTR)
 
 NUMCLUS = NUMSTR / 70
 
@@ -44,9 +43,9 @@ PNGSIZEA = GALX / 5
 
 PNGFRAMEA = PNGSIZEA / 10
 
-PNGSIZE = float(raw_input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
+PNGSIZE = float(input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
 
-PNGFRAME = float(raw_input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
+PNGFRAME = float(input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
 
 stars = []
 clusters = []
@@ -84,7 +83,7 @@ CLUSRADB = CLUSRAD + DISCLRAD
 NUMCB = NUMC + 1
 
 
-def generateClusters():
+def generateclusters():
     c = 0
     while c < NUMCB:
         # random distance from centre
@@ -165,9 +164,12 @@ def drawToPNG(filename):
     # Find maximal star distance
     max = 0
     for (x, y, z, scol) in stars:
-        if abs(x) > max: max = x
-        if abs(y) > max: max = y
-        if abs(z) > max: max = z
+        if abs(x) > max:
+            max = x
+        if abs(y) > max:
+            max = y
+        if abs(z) > max:
+            max = z
 
     # Calculate zoom factor to fit the galaxy to the PNG size
     factor = float(PNGSIZE - PNGFRAME * 2) / (max * 2)
@@ -178,12 +180,11 @@ def drawToPNG(filename):
 
     # Save the PNG
     image.save(filename)
-    print
-    filename
+    print(filename)
 
 
 # Generate the galaxy
-generateClusters()
+generateclusters()
 generateStars()
 
 # Save the galaxy as PNG to galaxy.png

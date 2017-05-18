@@ -1,7 +1,6 @@
-def drawToPNG(filename):
+def drawToPNG(filename, stars, NUMSTR):
     image = Image.new("RGB", (int(PNGSIZE), int(PNGSIZE)), PNGBGCOLOR)
     draw = ImageDraw.Draw(image)
-
     # Find maximal star distance
     max = 0
     for (x, y, z, scol) in stars:
