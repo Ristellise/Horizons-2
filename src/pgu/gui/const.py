@@ -23,7 +23,6 @@ Other:
 
 """
 import pygame
-
 from pygame.locals import QUIT, MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION, KEYDOWN, USEREVENT
 
 ENTER = pygame.locals.USEREVENT + 0

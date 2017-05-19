@@ -1,45 +1,31 @@
-def drawToPNG(filename, stars, NUMSTR):
-    image = Image.new("RGB", (int(PNGSIZE), int(PNGSIZE)), PNGBGCOLOR)
-    draw = ImageDraw.Draw(image)
-    # Find maximal star distance
-    max = 0
-    for (x, y, z, scol) in stars:
-        if abs(x) > max:
-            max = x
-        if abs(y) > max:
-            max = y
-        if abs(z) > max:
-            max = z
+NAME = None
 
-    # Calculate zoom factor to fit the galaxy to the PNG size
-    factor = float(PNGSIZE - PNGFRAME * 2) / (max * 2)
-    for (x, y, z, scol) in stars:
-        sx = factor * x + PNGSIZE / 2
-        sy = factor * y + PNGSIZE / 2
-        draw.point((sx, sy), fill=scol)
+NUMC = 0
 
-    # Save the PNG
-    image.save(filename)
-    print(filename)
+NUMSTR = int(input('Number of Stars <Default:2000>:') or "2000")
 
-NUMCLUS = NUMSTR / 70
+NUMCLUSA = NUMSTR // 70
 
-DISCLUS = NUMCLUS / 4
+NUMCLUS = int(input('Number of Stars in each Cluster <Default:Hub / 70>:') or str(NUMCLUSA))
 
-GALX = int(NUMSTR / (random.randrange(8, 20)))
+DISCLUSA = NUMCLUS // 4
 
-GALY = int(NUMSTR / (random.randrange(6, 28)))
+DISCLUS = int(input('Distribution of Star Number in each Cluster <Default: Avg/ 4>:') or str(DISCLUSA))
 
-GALZ = int(NUMSTR / (random.randrange(10, 40)))
+GALX = float(input('X Length of Galaxy <Default:90.0>:') or "90.0")
 
-CLUSRAD = NUMCLUS / 5
+GALY = float(input('Y Length of Galaxy <Default:90.0>:') or "90.0")
 
-DISCLRAD = CLUSRAD / 5
+GALZ = float(input('Maximum Depth of Galaxy <Default:0.0>:') or "0.0")
 
-PNGSIZEA = GALX / 5
+CLUSRADA = GALX // 12
 
-PNGFRAMEA = PNGSIZEA / 10
+CLUSRAD = float(input('Radius of each cluster <Default:Hub / 12>:') or str(CLUSRADA))
 
-PNGSIZE = float(raw_input('X and Y Size of PNG <Default:Bad Idea>:') or str(PNGSIZEA))
+DISCLRADA = CLUSRAD // 5
 
-PNGFRAME = float(raw_input('PNG Frame Size <Default:Bad Idea>:') or str(PNGFRAMEA))
+DISCLRAD = float(input('Distribution of Cluster Radius <Default:Avg / 5>:') or str(DISCLRADA))
+
+PNGSIZE = float(input('X and Y Size of PNG <Default:1200>:') or "1200")
+
+PNGFRAME = float(input('PNG Frame Size <Default:50>:') or "50")

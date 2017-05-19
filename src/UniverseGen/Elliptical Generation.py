@@ -101,7 +101,7 @@ CLUSRADB = CLUSRAD + DISCLRAD
 NUMCB = NUMC + 1
 
 
-def generateClusters():
+def generateclusters():
     c = 0
     cx = 0
     cy = 0
@@ -138,10 +138,10 @@ def generateStars():
     i = 0
     while i < NUMSTR:
         # Choose a random distance from center
-        distX = random.random() * GALX
-        distY = random.random() * GALY
-        distXb = distX + random.uniform(0, SGX)
-        distYb = distY + random.uniform(0, SGY)
+        distx = random.random() * GALX
+        disty = random.random() * GALY
+        distXb = distx + random.uniform(0, SGX)
+        distYb = disty + random.uniform(0, SGY)
 
         # Any rotation (points are not on arms)
         theta = random.random() * 360
@@ -209,26 +209,26 @@ def drawtopng(filename):
 
 
 # Generate the galaxy
-#  generateClusters()
-#  generateStars()
+generateclusters()
+generateStars()
 Stop = time.process_time()
 # Save the galaxy as PNG to galaxy.png
-#  drawtopng("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
+drawtopng("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
 # Create the galaxy's data galaxy.txt
 with open("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
-    text_file.write("Galaxy Number: {}".format(RAND))
-    text_file.write("Galaxy Name: {}".format(NAME))
-    text_file.write("Number of Clusters: {}".format(NUMC))
-    text_file.write("Stars: {}".format(NUMSTR))
-    text_file.write("Number of Stars per Cluster {}".format(NUMCLUS))
-    text_file.write("Star Number Distribution per Cluster {}".format(DISCLUS))
-    text_file.write("Galaxy X Length: {}".format(GALX))
-    text_file.write("Galaxy Y Length: {}".format(GALY))
-    text_file.write("Galaxy Z Length: {}".format(GALZ))
-    text_file.write("Cluster Radius: {}".format(CLUSRAD))
-    text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
-    text_file.write("Image Size: {}".format(PNGSIZE))
-    text_file.write("Frame Size: {}".format(PNGFRAME))
+    text_file.write("Galaxy Number: {}".format(RAND) + "\r\n")
+    text_file.write("Galaxy Name: {}".format(NAME) + "\r\n")
+    text_file.write("Number of Clusters: {}".format(NUMC) + "\r\n")
+    text_file.write("Stars: {}".format(NUMSTR) + "\r\n")
+    text_file.write("Number of Stars per Cluster {}".format(NUMCLUS) + "\r\n")
+    text_file.write("Star Number Distribution per Cluster {}".format(DISCLUS) + "\r\n")
+    text_file.write("Galaxy X Length: {}".format(GALX) + "\r\n")
+    text_file.write("Galaxy Y Length: {}".format(GALY) + "\r\n")
+    text_file.write("Galaxy Z Length: {}".format(GALZ) + "\r\n")
+    text_file.write("Cluster Radius: {}".format(CLUSRAD) + "\r\n")
+    text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD) + "\r\n")
+    text_file.write("Image Size: {}".format(PNGSIZE) + "\r\n")
+    text_file.write("Frame Size: {}".format(PNGFRAME) + "\r\n")
 Stop2 = time.process_time()
 ProcTimeTotal = Stop2 - Start
 ProcTimeGen = Stop - Start
