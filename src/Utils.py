@@ -12,7 +12,7 @@ def panic():
     traceback.print_stack()
     print("-------------------------------------------------------------------------")
     import sys
-    sys.exit("Horizons 2 Paniced.")
+    sys.exit("Horizons 2 Panicked.")
 
 
 def cat():
