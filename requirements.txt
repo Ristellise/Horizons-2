@@ -1,3 +1,4 @@
+openpyxl
 pgu
 pygame>=1.9.3
 cx_Freeze>=5.0.0
