@@ -29,8 +29,7 @@ import time
 PNGBGCOLOR = (0, 0, 0)
 
 # Quick Filename
-RAND = random.randrange(0, 108000000000)
-
+RAND = None
 # ---------------------------------------------------------------------------
 NAME = input('Galaxy Name:')
 

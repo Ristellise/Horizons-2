@@ -25,9 +25,10 @@ def generateuniverse(name, *args):
         Elliptical.NUMCLUS = clusters
         Elliptical.GALX = Galaxylength
         Elliptical.GALY = Galaxylength
+        Elliptical.GALZ = 0  # Magic Number! PANIC!!!
         Elliptical.CLUSRADA = Elliptical.GALX // 12
         Elliptical.DISCLRADA = Elliptical.CLUSRADA // 5
-        RAND = random.seed(seed)
+        Elliptical.RAND = random.seed(seed)
     if type == "0":
         Elliptical.generateclusters()
         Elliptical.generateStars()
