@@ -127,7 +127,7 @@ def generateclusters():
         cran = 0
 
 
-def generateStars():
+def generatestars():
     # Now generate the Hub. This places a point on or under the curve
     # maxHubZ - s d^2 where s is a scale factor calculated so that z = 0 is
     # at maxHubR (s = maxHubZ / maxHubR^2) AND so that minimum hub Z is at
@@ -209,7 +209,7 @@ def drawtopng(filename):
 
 # Generate the galaxy
 generateclusters()
-generateStars()
+generatestars()
 Stop = time.process_time()
 # Save the galaxy as PNG to galaxy.png
 drawtopng("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
