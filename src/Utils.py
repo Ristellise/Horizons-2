@@ -1,6 +1,7 @@
 import random
 import traceback
-
+import pygame
+import sys
 
 def panic():
     """
@@ -13,3 +14,11 @@ def panic():
     print("-------------------------------------------------------------------------")
     import sys
     sys.exit("Horizons 2 Panicked.")
+
+
+def safeexit():
+    """
+    Exits The Game Safely
+    """
+    pygame.quit()
+    sys.exit(0)
