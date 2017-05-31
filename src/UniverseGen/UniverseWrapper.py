@@ -19,7 +19,8 @@ def generateuniverse(name, galtype, hsb):
         Spiral.generateclusters()
         Spiral.generatestars()
         Spiral.drawtopng("Spiralgalaxy" + str(Globals.RAND) + "-" + str(name) + ".png")
+        Spiral.textgen()
 
 
-generateuniverse("test1", galtype=0, hsb=0)
-generateuniverse("test2", galtype=0, hsb=1)
+generateuniverse("test1", galtype=0, hsb=4)
+generateuniverse("test2", galtype=0, hsb=4)

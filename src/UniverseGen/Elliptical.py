@@ -20,19 +20,6 @@ HSB = gl.hsb
 
 NUMC = (random.randint(0, 12))
 
-if HSB == 0:
-    NUMSTR = random.randrange(1, 100)
-elif HSB == 1:
-    NUMSTR = random.randrange(100, 1000)
-elif HSB == 2:
-    NUMSTR = random.randrange(1000, 100000)
-elif HSB == 3:
-    NUMSTR = random.randrange(100000, 1000000)
-elif HSB == 4:
-    NUMSTR = random.randrange(1000000, 2000000)
-
-print(NUMSTR)
-
 NUMCLUS = NUMSTR / 70
 
 DISCLUS = NUMCLUS / 4
@@ -47,11 +34,9 @@ CLUSRAD = NUMCLUS / 5
 
 DISCLRAD = CLUSRAD / 5
 
-PNGSIZEA = GALX / 5
+PNGSIZE = gl.pngsize
 
-PNGFRAMEA = PNGSIZEA / 10
-
-PNGSIZE = int(PNGSIZEA)
+PNGFRAMEA = PNGSIZE / 10
 
 PNGFRAME = int(PNGFRAMEA)
 
@@ -194,24 +179,22 @@ def drawtopng(filename):
 
 
 # Generate the galaxy
-generateclusters()
-generatestars()
 
 # Save the galaxy as PNG to galaxy.png
-drawtopng("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
 
 # Create the galaxy's data galaxy.txt
-with open("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
-    text_file.write("Galaxy Number: {}".format(RAND))
-    text_file.write("Galaxy Name: {}".format(NAME))
-    text_file.write("Number of Clusters: {}".format(NUMC))
-    text_file.write("Stars: {}".format(NUMSTR))
-    text_file.write("Number of Stars per Cluster {}".format(NUMCLUS))
-    text_file.write("Star Number Distribution per Cluster {}".format(DISCLUS))
-    text_file.write("Galaxy X Length: {}".format(GALX))
-    text_file.write("Galaxy Y Length: {}".format(GALY))
-    text_file.write("Galaxy Z Length: {}".format(GALZ))
-    text_file.write("Cluster Radius: {}".format(CLUSRAD))
-    text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
-    text_file.write("Image Size: {}".format(PNGSIZE))
-    text_file.write("Frame Size: {}".format(PNGFRAME))
+def textgen():
+    with open("ellipticalgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
+        text_file.write("Galaxy Number: {}".format(RAND))
+        text_file.write("Galaxy Name: {}".format(NAME))
+        text_file.write("Number of Clusters: {}".format(NUMC))
+        text_file.write("Stars: {}".format(NUMSTR))
+        text_file.write("Number of Stars per Cluster {}".format(NUMCLUS))
+        text_file.write("Star Number Distribution per Cluster {}".format(DISCLUS))
+        text_file.write("Galaxy X Length: {}".format(GALX))
+        text_file.write("Galaxy Y Length: {}".format(GALY))
+        text_file.write("Galaxy Z Length: {}".format(GALZ))
+        text_file.write("Cluster Radius: {}".format(CLUSRAD))
+        text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
+        text_file.write("Image Size: {}".format(PNGSIZE))
+        text_file.write("Frame Size: {}".format(PNGFRAME))

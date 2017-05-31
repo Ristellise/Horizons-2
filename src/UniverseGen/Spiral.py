@@ -59,11 +59,9 @@ MAXDISKZ = int(DISKRAD / (random.uniform(1000, 8)))
 
 FUZZ = ARMWIDTH / 4
 
-PNGSIZEA = HUBRAD / 5
+PNGSIZE = gl.pngsize
 
-PNGFRAMEA = PNGSIZEA / 10
-
-PNGSIZE = int(PNGSIZEA)
+PNGFRAMEA = PNGSIZE / 10
 
 PNGFRAME = int(PNGFRAMEA)
 
@@ -127,7 +125,6 @@ NUMCB = NUMC + 1
 
 
 def generateclusters():
-    c = 0
     cx = 0
     cy = 0
     cz = 0
@@ -274,31 +271,25 @@ def drawtopng(filename):
     print(filename)
 
 
-# Generate the galaxy
-generateclusters()
-generatestars()
-
-# Save the galaxy as PNG to galaxy.png
-drawtopng("spiralgalaxy" + str(RAND) + "-" + str(NAME) + ".png")
-
 # Create the galaxy's data galaxy.txt
-with open("spiralgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
-    text_file.write("Galaxy Number: {}".format(RAND))
-    text_file.write("Galaxy Name: {}".format(NAME))
-    text_file.write("Number of Clusters: {}".format(NUMC))
-    text_file.write("Hub Stars: {}".format(NUMHUB))
-    text_file.write("Number of Stars per Cluster: {}".format(NUMCLUS))
-    text_file.write("Star Number Distribution per Cluster: {}".format(DISCLUS))
-    text_file.write("Disk Stars: {}".format(NUMDISK))
-    text_file.write("Hub Radius: {}".format(HUBRAD))
-    text_file.write("Cluster Radius: {}".format(CLUSRAD))
-    text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
-    text_file.write("Disk Radius: {}".format(DISKRAD))
-    text_file.write("Arm Number: {}".format(NUMARMS))
-    text_file.write("Arm Rotation: {}".format(ARMROTS))
-    text_file.write("Arm Width: {}".format(ARMWIDTH))
-    text_file.write("Hub Maximum Depth: {}".format(MAXHUBZ))
-    text_file.write("Disk Maximum Depth: {}".format(MAXDISKZ))
-    text_file.write("Maximum Outlier Distance: {}".format(FUZZ))
-    text_file.write("Image Size: {}".format(PNGSIZE))
-    text_file.write("Frame Size: {}".format(PNGFRAME))
+def textgen():
+    with open("spiralgalaxy" + str(RAND) + "-" + str(NAME) + ".txt", "w") as text_file:
+        text_file.write("Galaxy Number: {}".format(RAND))
+        text_file.write("Galaxy Name: {}".format(NAME))
+        text_file.write("Number of Clusters: {}".format(NUMC))
+        text_file.write("Hub Stars: {}".format(NUMHUB))
+        text_file.write("Number of Stars per Cluster: {}".format(NUMCLUS))
+        text_file.write("Star Number Distribution per Cluster: {}".format(DISCLUS))
+        text_file.write("Disk Stars: {}".format(NUMDISK))
+        text_file.write("Hub Radius: {}".format(HUBRAD))
+        text_file.write("Cluster Radius: {}".format(CLUSRAD))
+        text_file.write("Cluster Radius Distribution: {}".format(DISCLRAD))
+        text_file.write("Disk Radius: {}".format(DISKRAD))
+        text_file.write("Arm Number: {}".format(NUMARMS))
+        text_file.write("Arm Rotation: {}".format(ARMROTS))
+        text_file.write("Arm Width: {}".format(ARMWIDTH))
+        text_file.write("Hub Maximum Depth: {}".format(MAXHUBZ))
+        text_file.write("Disk Maximum Depth: {}".format(MAXDISKZ))
+        text_file.write("Maximum Outlier Distance: {}".format(FUZZ))
+        text_file.write("Image Size: {}".format(PNGSIZE))
+        text_file.write("Frame Size: {}".format(PNGFRAME))
