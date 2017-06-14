@@ -5,7 +5,7 @@ import pygame
 
 
 # noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
-class Tilevid(Vid):
+class Tilevid():
     """Based on [[vid]] -- see for reference."""
 
     def paint(self, s):

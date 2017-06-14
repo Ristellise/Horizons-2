@@ -53,25 +53,31 @@ def astar(start, end, layer, dist=manhattan_dist):
     opens.append(cur)
     while len(open):
         cur = opens.pop(0)
-        if cur.pos not in open: continue
+        if cur.pos not in open:
+            continue
         del open[cur.pos]
         closed[cur.pos] = cur
-        if cur.pos == end: break
+        if cur.pos == end:
+            break
         for dx, dy in [(0, -1), (1, 0), (0, 1), (-1, 0)]:  # (-1,-1),(1,-1),(-1,1),(1,1)]:
             pos = cur.pos[0] + dx, cur.pos[1] + dy
             # Check if the point lies in the grid
-            if (pos[0] < 0 or pos[1] < 0 or
-                        pos[0] >= w or pos[1] >= h or
-                    layer[pos[0]][pos[1]]):
+            if pos[0] < 0 or pos[1] < 0 or pos[0] >= w or pos[1] >= h or layer[pos[0]][pos[1]]:
                 continue
             # check for blocks of diagonals
-            if layer[cur.pos[1] + dy][cur.pos[0]]: continue
-            if layer[cur.pos[1]][cur.pos[0] + dx]: continue
+            if layer[cur.pos[1] + dy][cur.pos[0]]:
+                continue
+            if layer[cur.pos[1]][cur.pos[0] + dx]:
+                continue
             new = node(cur, pos, end, dist)
-            if pos in open and new.f >= open[pos].f: continue
-            if pos in closed and new.f >= closed[pos].f: continue
-            if pos in open: del open[pos]
-            if pos in closed: del closed[pos]
+            if pos in open and new.f >= open[pos].f:
+                continue
+            if pos in closed and new.f >= closed[pos].f:
+                continue
+            if pos in open:
+                del open[pos]
+            if pos in closed:
+                del closed[pos]
             open[pos] = new
             lo = 0
             hi = len(opens)
@@ -87,7 +93,7 @@ def astar(start, end, layer, dist=manhattan_dist):
         return []
 
     path = []
-    while cur.prev != None:
+    while cur.prev is not None:
         path.append(cur.pos)
         cur = cur.prev
     path.reverse()

@@ -2,6 +2,7 @@ import logging
 import pygame
 from src import Utils
 from src.pgu import gui
+
 logging.basicConfig(level=logging.INFO)
 version = ["0.0.2", "Pre - Alpha"]
 versionstring = ' '.join(version)
@@ -20,4 +21,4 @@ pygame.init()
 print("StepLoad : 2")
 app = gui.App()
 e = gui.Button("Test!")
-app.connect(gui.QUIT,gui.EXIT)
+app.connect(gui.QUIT, gui.EXIT)

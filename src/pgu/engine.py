@@ -26,7 +26,8 @@ class State:
         """Template Method - Initialize the state, called once the first time a state is selected."""
         return
 
-    def paint(self, screen):
+    @staticmethod
+    def paint(screen):
         """Template Method - Paint the screen.  Called once after the state is selected.
         
         State is responsible for calling pygame.display.flip() or whatever.
@@ -128,11 +129,13 @@ class Game:
         self.tick()
         return
 
-    def init(self):
+    @staticmethod
+    def init():
         """Template Method - called at the beginning of State.run() to initialize things."""
         return
 
-    def tick(self):
+    @staticmethod
+    def tick():
         """Template Method - called once per frame, usually for timer purposes."""
         pygame.time.wait(10)
 

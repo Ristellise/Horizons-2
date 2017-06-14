@@ -17,10 +17,10 @@ This code was previously known as the King James Version (named after the
 Bible of the same name for historical reasons.)
 
 """
-from src import Utils
+import math
+
 import pygame
 from pygame.locals import *
-import math
 
 
 class Sprite:
@@ -122,7 +122,7 @@ class _Sprites(list):
         self.removed.append(v)
 
 
-# noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
+# noinspection PyUnusedLocal
 class Vid:
     """An engine for rendering Sprites and Tiles.
     
@@ -147,6 +147,7 @@ class Vid:
     # noinspection PyUnusedLocal
     def __init__(self):
         # noinspection PyUnusedLocal
+        self.tlayer = self.layers[0]
         self.tiles = [None for x in range(0, 256)]
         self.sprites = _Sprites()
         self.images = {}  # just a store for images.
@@ -173,9 +174,9 @@ class Vid:
         # noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
         self.layers = [[[0 for x in range(0, w)] for y in range(0, h)]
                        for z in range(0, 4)]
-        self.tlayer = self.layers[0]
         self.blayer = self.layers[1]
-        if not bg: self.blayer = None
+        if not bg:
+            self.blayer = None
         self.clayer = self.layers[2]
         self.alayer = self.layers[3]
 
@@ -344,7 +345,8 @@ class Vid:
 
     def string2groups(self, str):
         """Convert a string to groups."""
-        if str == None: return 0
+        if str is None:
+            return 0
         return self.list2groups(str.split(","))
 
     def list2groups(self, igroups):
@@ -361,7 +363,8 @@ class Vid:
         """Convert a groups to a list."""
         v = []
         for s, n in self.groups.items():
-            if (n & groups) != 0: v.append(s)
+            if (n & groups) != 0:
+                v.append(s)
         return v
 
     def hit(self, x, y, t, s):
@@ -388,50 +391,35 @@ class Vid:
             if hasattr(s, 'loop'):
                 s.loop(self, s)
 
-    # noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
+    # noinspection PyUnusedLocal
     def loop_tilehits(self):
         tiles = self.tiles
-        # noinspection PyUnusedLocal,PyUnusedLocal
         tw, th = tiles[0].image.get_width(), tiles[0].image.get_height()
-
-        # noinspection PyUnusedLocal
         layer = self.layers[0]
 
         as_ = self.sprites[:]
         for s in as_:
             self._tilehits(s)
 
-    # noinspection PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal,PyUnusedLocal
+    # noinspection PyUnusedLocal
     def _tilehits(self, s):
         tiles = self.tiles
         tw, th = tiles[0].image.get_width(), tiles[0].image.get_height()
         layer = self.layers[0]
-
-        # noinspection PyUnusedLocal
         for _z in (0,):
             if s.groups != 0:
-
-                # noinspection PyProtectedMember
                 _rect = s._rect
                 rect = s.rect
-
                 _rectx = _rect.x
                 _recty = _rect.y
-                # noinspection PyUnusedLocal
                 _rectw = _rect.w
-                # noinspection PyUnusedLocal
                 _recth = _rect.h
-
-                # noinspection PyUnusedLocal
                 rectx = rect.x
                 recty = rect.y
-                # noinspection PyUnusedLocal
                 rectw = rect.w
                 recth = rect.h
-
                 rect.y = _rect.y
                 rect.h = _rect.h
-
                 hits = []
                 ct, cb, cl, cr = rect.top, rect.bottom, rect.left, rect.right
                 # nasty ol loops
@@ -515,8 +503,7 @@ class Vid:
                 while g:
                     if (g & 1) != 0:
                         for b in groups[n]:
-                            if (s != b and (s.agroups & b.groups) != 0
-                                and s.rect.colliderect(b.rect)):
+                            if s != b and (s.agroups & b.groups) != 0 and s.rect.colliderect(b.rect):
                                 s.hit(self, s, b)
 
                     g >>= 1

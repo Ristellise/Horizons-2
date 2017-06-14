@@ -35,6 +35,7 @@ class Form(widget.Widget):
     
     def __init__(self):
         widget.Widget.__init__(self,decorate=False)
+        self.groups = None
         self._elist = []
         self._emap = {}
         self._dirty = 0

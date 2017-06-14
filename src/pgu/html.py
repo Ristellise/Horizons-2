@@ -656,7 +656,7 @@ class HTML(gui.Document):
         return self._locals[k]
 
     # Returns a box (pygame rectangle) surrounding all widgets in this document
-    def get_bounding_box(this):
+    def get_bounding_box(self, this):
         minx = miny = sys.maxint
         maxx = maxy = -sys.maxint
         for e in this.layout.widgets:
@@ -675,13 +675,13 @@ def render_ext(font, rect, text, aa, color, bgcolor=(0, 0, 0, 0), **params):
 
     htm = HTML(text, font=font, color=color, **params)
 
-    if (rect == -1):
+    if rect == -1:
         # Make the surface large enough to fit the rendered text
         htm.resize(width=sys.maxint)
         (width, height) = htm.get_bounding_box().size
         # Now set the proper document width (computed from the bounding box)
         htm.resize(width=width)
-    elif (type(rect) == int):
+    elif type(rect) == int:
         # Fix the width of the document, while the height is variable
         width = rect
         height = htm.resize(width=width)[1]
@@ -694,7 +694,7 @@ def render_ext(font, rect, text, aa, color, bgcolor=(0, 0, 0, 0), **params):
     surf = pygame.Surface((width, height)).convert_alpha()
     surf.fill(bgcolor)
     htm.paint(surf)
-    return (surf, htm)
+    return surf, htm
 
 
 def render(font, rect, text, aa, color, bgcolor=(0, 0, 0, 0), **params):
