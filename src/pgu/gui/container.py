@@ -348,9 +348,12 @@ class Container(widget.Widget):
         widget.Widget.focus(self)  ### by Gal koren
         #        if not w:
         #            return widget.Widget.focus(self)
-        if not w: return
-        if self.myfocus: self.blur(self.myfocus)
-        if self.myhover is not w: self.enter(w)
+        if not w:
+            return
+        if self.myfocus:
+            self.blur(self.myfocus)
+        if self.myhover is not w:
+            self.enter(w)
         self.myfocus = w
         # noinspection PyProtectedMember
         w._event(pygame.event.Event(FOCUS))

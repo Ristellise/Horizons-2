@@ -257,10 +257,10 @@ class Widget(object):
             w.connect(gui.CLICK,onclick,'PGU Button Clicked')
 
         """
-        if (not code in self.connects):
+        if not code in self.connects:
             self.connects[code] = []
         for cb in self.connects[code]:
-            if (cb.func == func):
+            if cb.func == func:
                 # Already connected to this callback function
                 return
         # Wrap the callback function and add it to the list

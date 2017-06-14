@@ -109,7 +109,8 @@ class SlideBox(container.Container):
                                                                       real_surface=s,
                                                                       offset=self.offset))
         result = []
-        for r in rects: result.append(pygame.Rect(r).move(self.offset))
+        for r in rects:
+            result.append(pygame.Rect(r).move(self.offset,0))
         return result
 
     def resize(self, width=None, height=None):
@@ -123,7 +124,7 @@ class SlideBox(container.Container):
     def event(self, e):
         if e.type in [MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION]:
             pos = (e.pos[0] + self.offset[0], e.pos[1] + self.offset[1])
-            if self.max_rect.collidepoint(pos):
+            if self.max_rect.collidepoint(pos,0):
                 e_params = {'pos': pos}
                 if e.type == MOUSEMOTION:
                     e_params['buttons'] = e.buttons
@@ -309,19 +310,21 @@ class ScrollArea(table.Table):
 
     def set_vertical_scroll(self, percents):
         # if not self.vscrollbar: return
-        if not hasattr(self.vscrollbar, 'value'): return
+        if not hasattr(self.vscrollbar, 'value'):
+            return
         self.vscrollbar.value = percents  # min(max(percents*10, 0), 1000)
         self._vscrollbar_changed(None)
 
     def set_horizontal_scroll(self, percents):
         # if not self.hscrollbar: return
-        if not hasattr(self.hscrollbar, 'value'): return
+        if not hasattr(self.hscrollbar, 'value'):
+            return
         self.hscrollbar.value = percents  # min(max(percents*10, 0), 1000)
         self._hscrollbar_changed(None)
 
     def event(self, e):
         # checking for event recipient
-        if (table.Table.event(self, e)):
+        if table.Table.event(self, e):
             return True
 
         # mouse wheel scrolling
@@ -380,16 +383,19 @@ class _List_Item(button._button):
     def event(self, e):
         # noinspection PyProtectedMember
         button._button.event(self, e)
-        if self.group.value == self.value: self.pcls = "down"
+        if self.group.value == self.value:
+            self.pcls = "down"
 
     def paint(self, s):
-        if self.group.value == self.value: self.pcls = "down"
+        if self.group.value == self.value:
+            self.pcls = "down"
         self.widget.paint(surface.subsurface(s, self.widget.rect))
 
     def click(self):
         self.group.value = self.value
         for w in self.group.widgets:
-            if w != self: w.pcls = ""
+            if w != self:
+                w.pcls = ""
 
 
 # noinspection PyUnusedLocal

@@ -1,6 +1,6 @@
 import logging
 import pygame
-from src import Utils
+from src import Utils,eventhandler
 from src.pgu import gui
 
 logging.basicConfig(level=logging.INFO)
@@ -18,6 +18,7 @@ Where:
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1(Pygame Setup)")
 pygame.init()
+
 print("StepLoad : 2")
 app = gui.App()
 e = gui.Button("Test!")

@@ -137,9 +137,7 @@ class App(container.Container):
         self.widgets.append(w)
         w.container = self
         self.focus(w)
-
         pygame.key.set_repeat(500, 30)
-
         self._repaint = True
         self._quit = False
 
@@ -152,7 +150,7 @@ class App(container.Container):
         """
         self.set_global_app()
 
-        if (self.appArea and hasattr(ev, "pos")):
+        if self.appArea and hasattr(ev, "pos"):
             # Translate into subsurface coordinates
             pos = (ev.pos[0] - self.appArea.x,
                    ev.pos[1] - self.appArea.y)
@@ -285,9 +283,11 @@ class App(container.Container):
 
     def close(self, w):
         """Closes the previously opened PGU window"""
-        if self.myfocus is w: self.blur(w)
+        if self.myfocus is w:
+            self.blur(w)
 
-        if w not in self.windows: return  # no need to remove it twice! happens.
+        if w not in self.windows:
+            return  # no need to remove it twice! happens.
 
         self.windows.remove(w)
 
