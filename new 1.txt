@@ -1,0 +1,16 @@
+		I	
+Type	Rock Planet
+Orbital Radius	2.25 x 108 km   (1.50 AU)
+Period	1.35 x 104 hours   (1.55 earth years)
+Gravity	14.68 m/s2   (1.50 x earth)
+Special	Advanced alien artifact
+		II	
+Type	Rock Planet
+Orbital Radius	3.94 x 108 km   (2.63 AU)
+Period	3.14 x 104 hours   (3.59 earth years)
+Gravity	17.27 m/s2   (1.77 x earth)
+Special	Heavy volcanism, wreckage of a crashed starship
+		III	
+Type	Asteroid Belt
+Orbital Radius	6.71 x 108 km   (4.49 AU)
+Period	6.98 x 104 hours   (7.98 earth years)

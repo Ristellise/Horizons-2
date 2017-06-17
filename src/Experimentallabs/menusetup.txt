@@ -1,0 +1,2 @@
+button=x,y,name
+switch=x,y,name,default

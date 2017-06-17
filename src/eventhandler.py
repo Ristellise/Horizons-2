@@ -1,6 +1,7 @@
 import pygame
 import logging
-from src import Utils
+from src import Utils, Constants
+
 logging.basicConfig(level=logging.DEBUG)
 
 ActiveKey = {}
@@ -12,27 +13,27 @@ def eventhandle():
     if event.type == 0:  # Act. LIKE. A. FILTER.
         pass  # Coo... Coo... *Blushing Intensifies*
     elif event.type == 1:
-        pass
-    elif event.type == 2:  # This is a KeyDown Event
-        logging.debug(event)
-        eventdict = event.__dict__
-        ispressed(eventdict["key"], "add")
-    elif event.type == 3:
-        logging.debug(event)
-        eventdict = event.__dict__
-        ispressed(eventdict["key"], "remove")
+        #Mouse State
+        ActiveState = event.__dict__
+        if ActiveState >= 2:
+            Constants.DoRender = False
+        else:
+            Constants.DoRender = True
+            # We are behind a window... stop rendering.
+        print(event)
     elif event.type == 12:
         logging.debug(event)
         Utils.safeexit()
     else:
-        logging.debug(event)
+        print(event)
 
 
-def ispressed(key, request):
+def ispressed(key=None, request=None):
     """
         :param key: key(in numbers... not the unicode one!)
         :param request: can be(add, remove, None)
-        :return: If key == None, return True or False Depending on key being pressed.
+        :return: If key == None, return True or False Depending on key being pressed...
+                else, just spill out all of activekey contents.
     """
     if request == "add":
         ActiveKey[key] = 1
@@ -45,7 +46,10 @@ def ispressed(key, request):
         except KeyError:
             logging.warning("Key not found : " + str(key))
     elif request is None:
-        return ActiveKey[key]
+        try:
+            return ActiveKey[key]
+        except KeyError:
+            return ActiveKey
 
 
 """
@@ -56,3 +60,8 @@ KeyUp:
 DEBUG:root:3
 DEBUG:root:{'key': 100, 'mod': 0, 'scancode': 32}
 """
+if __name__ == "__main__":
+    pygame.init()
+    pygame.display.set_mode((1600,900))
+    while True:
+        eventhandle()

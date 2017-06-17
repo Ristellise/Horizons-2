@@ -28,7 +28,7 @@ Progress: 118 Warnings and 1275 Weak Warnings
 """
 #  TODO: Fix UniverseGen
 """
-Progress: 40 Warnings and 75 Weak Warnings
+Progress: 115 Warnings and 619 Weak Warnings
 """
 #  TODO: Use Excel For materials
 """
