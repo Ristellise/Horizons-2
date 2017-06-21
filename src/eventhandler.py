@@ -5,15 +5,17 @@ from src import Utils, Constants
 logging.basicConfig(level=logging.DEBUG)
 
 ActiveKey = {}
+pressedkeylists = [pygame.K_LEFT, pygame.K_RIGHT]
 
 
 def eventhandle():
     pygame.event.pump()
+    pressed = pygame.key.get_pressed()
     event = pygame.event.poll()
     if event.type == 0:  # Act. LIKE. A. FILTER.
         pass  # Coo... Coo... *Blushing Intensifies*
     elif event.type == 1:
-        #Mouse State
+        # Mouse State
         ActiveState = event.__dict__
         if ActiveState >= 2:
             Constants.DoRender = False
@@ -25,6 +27,8 @@ def eventhandle():
         logging.debug(event)
         Utils.safeexit()
     else:
+        for x in pressedkeylists:
+            pass
         print(event)
 
 
@@ -62,6 +66,6 @@ DEBUG:root:{'key': 100, 'mod': 0, 'scancode': 32}
 """
 if __name__ == "__main__":
     pygame.init()
-    pygame.display.set_mode((1600,900))
+    pygame.display.set_mode((1600, 900))
     while True:
         eventhandle()
