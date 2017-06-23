@@ -6,8 +6,9 @@ Freezeticking = 0
 screenx = 300
 screeny = 400
 Exit = False
-Shipsprite = pygame.sprite.RenderUpdates()
-BackgroundSprite = pygame.sprite.RenderUpdates()
-UISprite = pygame.sprite.RenderUpdates()
+Shipsprite = []
+BackgroundSprite = []
+UISprite = []
+PlanetRender = []
 screen = pygame.display.set_mode((screenx, screeny))
 

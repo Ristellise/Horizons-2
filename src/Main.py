@@ -24,7 +24,7 @@ print("StepLoad : 5")
 clock = gameclock.GameClock(
     update_callback=GameLoop.update(),
     frame_callback=GameLoop.draw(),
-    pause_callback=GameLoop.ForceFreeze()
+    pause_callback=GameLoop.forcefreeze()
 )
 while True:
     if Gconstants.Exit:

@@ -1,6 +1,6 @@
 from src import Utils
 from src import Gconstants
-import pygame
+import pygame, uuid
 
 
 def init():
@@ -15,7 +15,7 @@ def update():
             print(key)
 
 
-def ForceFreeze():
+def forcefreeze():
     # Force Freeze of ticking
     if Gconstants.Freezeticking == 1:
         Gconstants.Freezeticking = 0
@@ -24,12 +24,16 @@ def ForceFreeze():
 
 
 def addsprite(sprite, x, y, layer):
+    suuid = str(uuid.uuid4())[:8]
     if layer == 0:
-        Gconstants.BackgroundSprite.add(sprite)
+        Gconstants.BackgroundSprite.append([suuid, sprite, x, y])
+    elif layer == 1:
+        Gconstants.
+    elif layer == 2:
+        Gconstants.Shipsprite.append([suuid, sprite, x, y])
+    elif layer == 3:
+        Gconstants.UISprite.append([suuid, sprite, x, y])
 
 
 def draw():
-    Gconstants.screen.fill((0, 0, 0))
-    Gconstants.BackgroundSprite.draw(Gconstants.screen)
-    Gconstants.Shipsprite.draw(Gconstants.screen)
-    Gconstants.UISprite.draw(Gconstants.screen)
+    Gconstants.screen.fill([0, 0, 0])
