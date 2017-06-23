@@ -1,5 +1,7 @@
 Sclass = ['Scout', 'Frigate', 'Crusier', 'Carrier', 'Destroyer', 'BattleCrusier', 'Battleship']
 ShipInfo = {}
+
+
 # Additional Classes : TroopTransport,
 # Civi : SpaceStation
 
