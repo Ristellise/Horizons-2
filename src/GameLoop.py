@@ -1,28 +1,35 @@
-from src import Gconstants,Utils
-import math,uuid
+from src import Utils
+from src import Gconstants
 import pygame
+
+
+def init():
+    pass
+
+
 def update():
-    if Gconstants.Freezeticking == 1:
-        if pygame.key.get_focused():
-            Gconstants.Freezeticking = 0
-        else:
-            Gconstants.Freezeticking = 1
-        pass
-    else:
-        print('Doing Tick...')
     for key in pygame.key.get_pressed():
         if key == pygame.QUIT or pygame.K_ESCAPE:
             Utils.safeexit()
         else:
             print(key)
-def addsprite(sprite,x,y,layer):
-    # Generate UUID
-    id = (str(uuid.uuid4())[:8])
-    for sprite in Gconstants.Spritelist:
-        if sprite[0] in id:
-            #We attempt to redo the list
-            addsprite(sprite,x,y,layer)
-    Gconstants.Spritelist.append([id,x,y,sprite,layer])
+
+
+def ForceFreeze():
+    # Force Freeze of ticking
+    if Gconstants.Freezeticking == 1:
+        Gconstants.Freezeticking = 0
+    else:
+        Gconstants.Freezeticking = 1
+
+
+def addsprite(sprite, x, y, layer):
+    if layer == 0:
+        Gconstants.BackgroundSprite.add(sprite)
+
+
 def draw():
-    for sprite in Gconstants.Spritelist:
-        pygame.sprite.Sprite.
+    Gconstants.screen.fill((0, 0, 0))
+    Gconstants.BackgroundSprite.draw(Gconstants.screen)
+    Gconstants.Shipsprite.draw(Gconstants.screen)
+    Gconstants.UISprite.draw(Gconstants.screen)

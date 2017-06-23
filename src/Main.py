@@ -1,6 +1,7 @@
 import logging
 import pygame
-from src import Gconstants
+from src import Gconstants, gameclock, GameLoop, Utils
+
 logging.basicConfig(level=logging.INFO)
 version = ["0.0.2", "Pre - Alpha"]
 versionstring = ' '.join(version)
@@ -20,5 +21,13 @@ print("StepLoad : 2")
 print("StepLoad : 3")
 print("StepLoad : 4")
 print("StepLoad : 5")
-screen = pygame.display.set_mode((Gconstants.screenx,Gconstants.screeny))
+clock = gameclock.GameClock(
+    update_callback=GameLoop.update(),
+    frame_callback=GameLoop.draw(),
+    pause_callback=GameLoop.ForceFreeze()
+)
 while True:
+    if Gconstants.Exit:
+        Utils.safeexit()
+    else:
+        clock.tick()
