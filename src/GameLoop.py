@@ -4,7 +4,7 @@ import pygame, uuid
 
 
 def init():
-    Utils.log(0, 'UI', 'Finished Font Setup!')
+
 
 
 def update():

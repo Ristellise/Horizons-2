@@ -10,5 +10,6 @@ Shipsprite = []
 BackgroundSprite = []
 UISprite = []
 PlanetRender = []
+uifiles = []
 screen = pygame.display.set_mode((screenx, screeny))
 

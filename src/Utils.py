@@ -2,8 +2,12 @@ import traceback
 import pygame
 import sys
 import logging
-
-
+logging.basicConfig(filename='latest.log', level=logging.INFO)
+Utilslogger = logging.getLogger()
+handler = logging.StreamHandler(stream=sys.stdout)
+handler.setLevel(logging.DEBUG)
+Utilslogger.addHandler(handler)
+Utilslogger.setLevel(logging.DEBUG)
 
 def panic():
     """
@@ -35,23 +39,22 @@ def log(level, module=None, *args):
     :param args: message
     :return:
     """
-    stringargs = map(str, args)
-    argsstring = ' '.join(stringargs)
+    argsstring = ' '.join(map(str, args))
     if module is None:
         if level == 0:
-            logging.debug(argsstring)
+            Utilslogger.debug(argsstring)
         elif level == 1:
-            logging.info(argsstring)
+            Utilslogger.info(argsstring)
         elif level == 2:
-            logging.warning(argsstring)
+            Utilslogger.warning(argsstring)
         else:
-            logging.critical(argsstring)
+            Utilslogger.critical(argsstring)
     else:
         if level == 0:
-            logging.debug(module + ': ' + argsstring)
+            Utilslogger.debug(module + ': ' + argsstring)
         elif level == 1:
-            logging.info(module + ': ' + argsstring)
+            Utilslogger.info(module + ': ' + argsstring)
         elif level == 2:
-            logging.warning(module + ': ' + argsstring)
+            Utilslogger.warning(module + ': ' + argsstring)
         else:
-            logging.critical(module + ': ' + argsstring)
+            Utilslogger.critical(module + ': ' + argsstring)
