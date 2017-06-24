@@ -4,7 +4,7 @@ import pygame, uuid
 
 
 def init():
-    pass
+    Utils.log(0, 'UI', 'Finished Font Setup!')
 
 
 def update():
@@ -28,12 +28,13 @@ def addsprite(sprite, x, y, layer):
     if layer == 0:
         Gconstants.BackgroundSprite.append([suuid, sprite, x, y])
     elif layer == 1:
-        Gconstants.
+        Gconstants.PlanetRender.append([suuid, sprite, x, y])
     elif layer == 2:
         Gconstants.Shipsprite.append([suuid, sprite, x, y])
     elif layer == 3:
         Gconstants.UISprite.append([suuid, sprite, x, y])
-
+    else:
+        Utils.logger(3, "Unexpected layer : " + layer + " X: " + x + " Y: " + y, module='GameLoop')
 
 def draw():
     Gconstants.screen.fill([0, 0, 0])

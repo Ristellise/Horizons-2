@@ -1,8 +1,9 @@
 import logging
 import pygame
-from src import Gconstants, gameclock, GameLoop, Utils
+from src import Gconstants, gameclock, GameLoop, Utils, UI
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename='latest.log', level=logging.INFO)
+
 version = ["0.0.2", "Pre - Alpha"]
 versionstring = ' '.join(version)
 """
@@ -16,7 +17,7 @@ Where:
 """
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1(Pygame Setup)")
-pygame.init()
+UI.setupFont()
 print("StepLoad : 2")
 print("StepLoad : 3")
 print("StepLoad : 4")
