@@ -11,3 +11,6 @@ Planet Textures:
 Starscape:
     http://alexcpeterson.com/spacescape/
     (You can use Spacescape to make skyboxes for your free or commercial game, no license or royalties required!)
+Background star fields :
+    Bonsaiheldin | http://bonsaiheld.org
+    (

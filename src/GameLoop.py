@@ -3,10 +3,6 @@ from src import Gconstants
 import pygame, uuid
 
 
-def init():
-
-
-
 def update():
     for key in pygame.key.get_pressed():
         if key == pygame.QUIT or pygame.K_ESCAPE:
@@ -35,6 +31,7 @@ def addsprite(sprite, x, y, layer):
         Gconstants.UISprite.append([suuid, sprite, x, y])
     else:
         Utils.logger(3, "Unexpected layer : " + layer + " X: " + x + " Y: " + y, module='GameLoop')
+
 
 def draw():
     Gconstants.screen.fill([0, 0, 0])

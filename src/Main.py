@@ -1,5 +1,5 @@
 import pygame
-from src import Gconstants, gameclock, GameLoop, Utils, UI
+from src import Gconstants, gameclock, GameLoop, Utils, classes, Statics
 
 version = ["0.0.2", "Pre - Alpha"]
 versionstring = ' '.join(version)
@@ -14,12 +14,14 @@ Where:
 """
 print("Starting GalaxyTest Version : " + versionstring)
 print("Stepload : 1(Pygame Setup)")
-UI.setupFont()
+classes.setupfont()
+Statics.mainscreen()
 print("StepLoad : 2")
 
 print("StepLoad : 3")
 print("StepLoad : 4")
 print("StepLoad : 5")
+"""
 clock = gameclock.GameClock(
     update_callback=GameLoop.update(),
     frame_callback=GameLoop.draw(),
@@ -31,3 +33,4 @@ while True:
         Utils.safeexit()
     else:
         clock.tick()
+"""
