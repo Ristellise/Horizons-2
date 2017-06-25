@@ -48,8 +48,7 @@ class text(Generic):
         print(self.color, self.antialias, self.text)
         if Gconstants.Font is None:
             print('font is none!')
-        render = Gconstants.Font.render(self.text, self.antialias, pygame.Color(self.color),
-                                        pygame.Color(255, 255, 255))
+        render = Gconstants.Font.render(self.text, self.antialias, pygame.Color(self.color),pygame.Color(255, 255, 255))
         canvas.blit(render, (self.x, self.y))
 
 
