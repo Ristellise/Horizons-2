@@ -18,15 +18,15 @@ class Generic:
         self.y = y
 
 
-class image(Generic):
+class Image(Generic):
     """
     Image Base
     Extended from Generic
+
     """
 
     def __init__(self, x, y, selfimage):
         """
-
         :param x: x coord
         :param y: y coord
         :param selfimage: image file
@@ -42,7 +42,7 @@ class image(Generic):
         canvas.blit(self.image, (self.x, self.y))
 
 
-class text(Generic):
+class Text(Generic):
     def __init__(self, selftext, x, y, color, aa):
         super().__init__(x, y)
         self.color = color
@@ -58,7 +58,7 @@ class text(Generic):
 
 
 # Ship class Extends from image class
-class shipclass(image):
+class Shipclass(Image):
     def __init__(self, x, y, selfimage):
         super().__init__(x, y, selfimage)
 

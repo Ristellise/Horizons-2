@@ -1,5 +1,5 @@
 import pygame
-from src import Gconstants, gameclock, GameLoop, Utils, classes, Statics
+from src import classes, Statics
 
 version = ["0.0.2", "Pre - Alpha"]
 versionstring = ' '.join(version)
