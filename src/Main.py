@@ -21,6 +21,8 @@ print("StepLoad : 2")
 print("StepLoad : 3")
 print("StepLoad : 4")
 print("StepLoad : 5")
+while True:
+    pygame.display.flip()
 """
 clock = gameclock.GameClock(
     update_callback=GameLoop.update(),

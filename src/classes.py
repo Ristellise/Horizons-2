@@ -12,6 +12,7 @@ class Generic:
     Does nothing on it's own
     Extend it!
     """
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -31,16 +32,14 @@ class image(Generic):
         :param selfimage: image file
         """
         super().__init__(x, y)
+        # noinspection PyUnresolvedReferences
+        # This actually works. but PyCharm goes "NOPE ITS NOT THERE HURR DURR"
         self.image = pygame.image.load(selfimage)
-        self.size = image.get_size()
-        print(self.size)
-        self.rect = image.get_size()
+        self.size = self.image.get_size()
+        self.rect = self.image.get_size()
 
     def draw(self, canvas):
         canvas.blit(self.image, (self.x, self.y))
-
-    def overlaps(self, otherrect):
-        return otherrect.colliderect(pygame.Rect(self.x, self.y, self.h, self.w))
 
 
 class text(Generic):
@@ -51,12 +50,11 @@ class text(Generic):
         self.text = selftext
 
     def draw(self, canvas):
-        print(self.color, self.antialias, self.text)
         if Gconstants.Font is None:
-            print('font is none!')
-        render = Gconstants.Font.render(self.text, self.antialias, pygame.Color(self.color),
-                                        pygame.Color(255, 255, 255))
-        canvas.blit(render, (self.x, self.y))
+            Utils.log(3, 'UI', 'Font Config is none! Check if Font file is loaded at "GConstants.Font"')
+        else:
+            render = Gconstants.Font.render(self.text, self.antialias, self.color)
+            canvas.blit(render, (self.x, self.y))
 
 
 # Ship class Extends from image class
@@ -66,7 +64,7 @@ class shipclass(image):
 
 
 def setupfont():
-    Utils.log(0, 'UI', 'Begin Fontsetup')
+    Utils.log(0, 'UI', 'Begin Font setup.')
     pygame.font.init()
     if Gconstants.Size == 0:
         Gconstants.Font = pygame.font.Font(str(Gconstants.fontfile), 14)
