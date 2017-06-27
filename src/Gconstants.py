@@ -14,9 +14,9 @@ UISprite = []
 PlanetRender = []
 uifiles = []
 if os.environ.get('IsCI') is not None:
-    pass
-else:
     screen = pygame.display.set_mode((screenx, screeny))
+else:
+    pass
 Size = 0
 Font = None
 fontfile = (os.getcwd() + '\Resources\Fonts\\trench.ttf')
