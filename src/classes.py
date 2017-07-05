@@ -57,10 +57,7 @@ class Text(Generic):
             canvas.blit(render, (self.x, self.y))
 
 
-# Ship class Extends from image class
-class Shipclass(Image):
-    def __init__(self, x, y, selfimage):
-        super().__init__(x, y, selfimage)
+
 
 
 def setupfont():
@@ -73,3 +70,29 @@ def setupfont():
     elif Gconstants.Size == 2:
         Gconstants.Font = pygame.font.Font(str(Gconstants.fontfile), 24)
     Utils.log(0, 'UI', 'Finished Font Setup!')
+
+# Ship class Extends from image class
+class Ship(Image):
+    def __init__(self, x, y, selfimage):
+        super().__init__(x, y, selfimage)
+        self.shipporgress = None
+
+
+    def progress(self,increment):
+        if increment:
+            if self.shipporgress is None:
+                self.shipporgress = 1
+            else:
+                self.shipporgress += 1
+        elif not increment:
+            if self.shipporgress == 1:
+                self.shipporgress = None
+
+
+    def draw(self, canvas):
+        if self.shipporgress >= 1:
+            canvas.
+            canvas.blit(self.image, (self.x, self.y))
+        else:
+            pass
+    def states(self):

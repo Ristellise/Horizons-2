@@ -30,7 +30,7 @@ def addsprite(sprite, x, y, layer):
     elif layer == 3:
         Gconstants.UISprite.append([suuid, sprite, x, y])
     else:
-        Utils.logger(3, "Unexpected layer : " + layer + " X: " + x + " Y: " + y, module='GameLoop')
+        Utils.log(3, "Unexpected layer : " + layer + " X: " + x + " Y: " + y, module='GameLoop')
 
 
 def draw():
