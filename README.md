@@ -1,3 +1,7 @@
+## Notice
+- Project Abandoned as of 2nd Nov 2017
+- Reason: Lack of time and will.
+
 # Horizons 2
 | CI | Status |
 | --- | --- |
